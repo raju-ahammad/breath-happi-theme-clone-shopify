@@ -1,0 +1,76 @@
+<style>
+.cart__img__container {
+  width: 35%;
+}
+.cart__img__container img {
+  width: 100%;
+}
+.cart__info__container {
+  width: 45%;
+}
+.cart__item__container {
+  display: flex;
+  justify-content: space-between;
+  
+
+}
+
+.cart__remove__btn {
+  width: 20%;
+}
+.quan {
+  border: none;
+  width: 10%;
+  outline: none;
+  background: transparent;
+}
+.increment__dec__btn {
+  background: transparent;
+  border: none;
+  outline: none;
+}
+.cart__remove__btn a {
+  text-decoration: none;
+  color: black;
+}
+.minicart__root {
+  padding: 4%;
+  height: 400px;
+  overflow-y: auto;
+}
+</style>
+
+<div class="minicart__root" id="root"></div>
+
+<script id="entry-template" type="text/x-handlebars-template">
+{% raw %}
+    {{#items}}
+    <div class="cart__item__container">
+         <div class="cart__img__container">
+            <img src="{{ image }}" alt="">
+         </div>
+         <div class="cart__info__container">
+            <p>{{ title }}</p>
+            <p>${{price}}</p>
+            <p><small>Includes 6 month filter</small> </p>
+            <div>
+            <button data-field="quantity" class="decrement_qty increment__dec__btn">
+              -
+            </button>
+            <input class="quan" data-field="quantity" var-id="{{ variant_id }}" name="quantity" size="10" value="{{ quantity }}" />
+              <button class="increment_qty increment__dec__btn">
+                +
+            </button>
+          </div>
+
+         </div>
+         <p class="cart__remove__btn"><a href="" data-id="{{ variant_id }}" id="cart_remove" class="remove-item" title="Remove Item">X</a></p>
+    </div>
+      
+      <div class="cart_item_border"></div>
+
+      {{/items}}
+      
+      
+  {% endraw %} 
+</script>

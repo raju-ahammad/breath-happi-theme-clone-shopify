@@ -1,0 +1,203 @@
+<style>
+.product__bottom_section {
+    width: 100%;
+    background: #defce8;
+    margin-top: 5%;
+}
+.air__container {
+    display: flex;
+    justify-content: center;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    align-items: center;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+.air__image_container img {
+    width: 60%;
+}
+.air__desc {
+    width: 60%
+}
+.title_border {
+    border-bottom: 2px solid;
+    width: 30%;
+}
+
+
+
+
+.customer__image_container img {
+    width: 100%;
+    margin-top: 3%;
+}
+
+.customer__image__video {
+    margin-top: 5%;
+    margin-left: 8%;
+    margin-right: 8%;
+}
+.customer__video {
+    margin-bottom: 3%;
+}
+
+.related_product {
+    margin-bottom: 3%;
+}
+
+.video_url  iframe{
+    width: 100%;
+    height: 500px;
+}
+
+
+</style>
+
+<section class="product__bottom_section">
+    <div class="air__container">
+        <div class="air__image_container">
+            <img src="{{ section.settings.air__image | img_url: 'master' }}" alt="">
+        </div>
+        <div class="air__desc">
+            <h1>{{ section.settings.air_title }}</h1>
+            <div class="title_border"></div>
+            <p>{{ section.settings.air_desc }}</p>
+        </div>
+    </div>
+</section>
+
+<section class="happi__kill__image__section">
+    <div class=" happi__header__text">
+        <h3 class="section_title">{{ section.settings.happi__kill }}</h3>
+    </div>
+    <div class="happi__kill__image">
+        {% for block in section.blocks %}
+            <div class="kill__image__container">
+                <img src="{{ block.settings.happi_image | img_url: 'master' }}" alt="">
+                <p>{{ block.settings.image_text }}</p>
+            </div>
+            
+        {% endfor %}
+    </div>
+    
+</section>
+
+<section class="customer__image__video">
+    <div class="customer__image_container">
+        <img src="{{ section.settings.product_image_1 | img_url: '1920x' }}" alt=""> 
+    </div>
+    <div class="customer__image_container">
+        <img src="{{ section.settings.product_image_2 | img_url: '1920x' }}" alt="">
+    </div>
+    <div class="customer__video ">
+        <h3 class="section__title">Happi Customers</h3>
+    </div>
+    <div class="video_url">
+        
+        <iframe src="https://www.youtube.com/embed/{{ section.settings.video.id }}"  
+          frameborder="0" allowfullscreen></iframe>
+    </div>
+
+    <div class="">
+        <h3 class="section_title">Related Products</h3>
+    </div>
+    {%- assign collection = collections[section.settings.related_collection] -%}
+    <div class="Related__product__container">
+    
+        {% for product in collection.products  %}
+            <div class="related__product__card ">
+                <div class="product__img__container  ">
+                    <a href="{{product.url}}"><img src="{{ product.featured_image.src | img_url: 'master' }}" alt="" /></a>
+                </div>
+                <div class="product__desc">
+                    <p><b>{{ product.title }}</b></p>
+                    <p>Cleans 150 Sq Ft</p>
+                    <p>${{ product.price }}USD</p>
+                    <p>or 4 interest-free payments of $38 with Affirm. Learn more</p>
+                    <div class="product__btn">
+                        <a class="" href="{{ product.url }}"><b>Learn more</b></a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+     
+</section>
+
+{% schema %}
+    {
+        "name": "Product Section",
+        "settings": [
+            {
+                "type": "text",
+                "id": "air_title",
+                "label": "Air Purification perfected",
+                "default": "Air Purification perfected"
+            },
+            {
+                "type": "image_picker",
+                "id": "air__image",
+                "label": "Air Purification Image"
+            },
+            {
+                "type": "text",
+                "id": "air_desc",
+                "label": "Air Purification description"
+            },
+            {
+                "type": "text",
+                "id": "happi__kill",
+                "label": "What does Happi kill",
+                "default": "What does Happi kill?"
+            },
+            {
+                "type": "image_picker",
+                "id": "product_image_1",
+                "label": "Product_image_1"
+            },
+            {
+                "type": "image_picker",
+                "id": "product_image_2",
+                "label": "Product_image_2"
+            },
+            {
+                "type": "url",
+                "id": "video_url",
+                "label": "customer Video"
+            },
+            {
+                "type": "video_url",
+                "id": "video",
+                "label": "Customer Video",
+                "accept": ["youtube", "vimeo"]
+                
+            },
+            {
+                "type": "collection",
+                "id": "related_collection",
+                "label": "Related Product"
+               
+            }
+            
+        ],
+        "blocks":[
+            {
+                "type": "Image",
+                "name": "How happi kill Image",
+                "settings":[
+                    {
+                        "type": "image_picker",
+                        "id": "happi_image",
+                        "label": "Happi killing Image"
+                    },
+                    {
+                        "type": "text",
+                        "id": "image_text",
+                        "label": "Image Text"
+                    }
+                ]
+             }
+         ]
+        
+    }
+{% endschema %}

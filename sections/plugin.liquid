@@ -1,0 +1,93 @@
+<style>
+.title_header h1 {
+    text-align: center;
+}
+
+.plugin_section__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 5%;
+}
+
+.plugin__image__container {
+    width: 60%;
+
+}
+.plugin__image__container img {
+    width: 100%;
+}
+.plugin_text {
+    width: 50%;
+    margin-right: -60px;
+    z-index: 999;
+}
+@media screen and (max-width: 981px) {
+    .title_header {
+        margin-top: 10%;
+    }
+}
+
+@media screen and (max-width: 769px) {
+    .plugin_section__container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        margin-top: 5%;
+    }
+    .plugin__image__container {
+        width: 100%;
+
+    }
+    .plugin_text {
+        width: 100%;
+        margin-right: 0px;
+    }
+    .title_header {
+        margin-top: 15%;
+    }
+}
+
+
+</style>
+
+<section class="plugin__section tech__section">
+    <div class="happi__header__text">
+        <h3 class="section_title">{{ section.settings.top__title }}</h3>
+    </div>
+    <div class="plugin_section__container">
+        <div class="plugin_text">
+            <p>{{ section.settings.txt }}</p>
+        </div>
+        <div class="plugin__image__container">
+            <img src="{{ section.settings.about_image | img_url: 'master'}}" alt="">
+        </div>
+
+    </div>
+</section>
+
+{% schema %}
+    {
+        "name": "plug in and breath easy",
+        "settings": [
+            {
+                "type": "text",
+                "id": "top__title",
+                "label": "Top Block Title",
+                "default": "Plug in and breathe easy."   
+            },
+            {
+                "type": "image_picker",
+                "id": "about_image",
+                "label": "About Image"
+            },
+            {
+                "type": "text",
+                "id": "txt",
+                "label": "Text"
+                
+            }
+        ]
+    }
+{% endschema %}

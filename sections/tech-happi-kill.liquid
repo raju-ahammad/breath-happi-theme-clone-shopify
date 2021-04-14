@@ -1,0 +1,155 @@
+<style>
+.how__does__happi__kill_container {
+    margin-left: 8%;
+    margin-right: 8%;
+}
+.kill__text {
+    margin-top: 6%;
+}
+.happi__working__container {
+    position: relative;
+}
+.happi__kill_image__container img {
+    width: 100%;
+}
+.happi__kill_image__container {
+    width: 60%;
+}
+.happi_image_1_txt {
+    position: absolute;
+    width: 31%;
+    right: 5%;
+    bottom: 5%;
+}
+.happi__2_working__container {
+    margin-top: 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+.happi_2__working__txt {
+    width: 20%;
+}
+.happi_2__kill_image__container img {
+    width: 100%;
+}
+.happi_2__kill_image__container {
+    width: 60%;
+}
+.happi_image_12_txt {
+    width: 20%;
+}
+.happi_image_12_txt {
+    margin-top: -12%;
+    margin-left: 20px;
+}
+.kill__img_text__1 {
+    position: absolute;
+    top: -4%;
+    width: 20%
+}
+.kill__img_text__3 {
+    position: absolute;
+    bottom: 4%;
+    width: 20%
+}
+</style>
+
+<div class="how__does__happi__kill_container">
+    <div class="happi__header__text">
+        <h3 class="section_title">{{ section.settings.happi_title }}</h3>
+    </div>
+    <div class="kill__text">
+        <p>Pure air takes precise work. Happi technology uses five filters that work in harmony to ensure unwanted particles stay out of your space.</p>
+    </div>
+    <div class="happi__working__container">
+        <div class="happi__kill_image__container">
+            <img src="{{ section.settings.happi_1 | img_url: '1920x' }}" alt="">
+        </div>
+        <div class="happi_image_1_txt">
+            <p class="happi_text_1"> {{section.settings.happi_1_text}} </p>
+            <p class="happi_text_2"> {{section.settings.happi_2_text}} </p>
+        </div>
+    </div>
+    <div class="happi__2_working__container">
+        <div class="happi_2__working__txt">
+            <p class="kill__img_text__1"> {{section.settings.happi_txt_1}} </p>
+            <p class="kill__img_text__2"> {{section.settings.happi_txt_2}} </p>
+            <p class="kill__img_text__3"> {{section.settings.happi_txt_3}} </p>
+        </div>
+        <div class="happi_2__kill_image__container">
+            <img src="{{ section.settings.happi_2 | img_url: '1920x' }}" alt="">
+        </div>
+        <div class="happi_image_12_txt">
+            <p> {{section.settings.happi_txt_4}} </p>
+        </div>
+    </div>
+</div>
+{% include 'mobile-tech-happi-kill' %}
+{% schema %}
+    {
+        "name": "how does happi kill",
+        "settings": [
+            {
+                "type": "text",
+                "id": "happi_title",
+                "label": "How does Happi Work Title"   
+            },
+            {
+                "type": "image_picker",
+                "id": "happi_1",
+                "label": "How does happi 1 Image"
+            },
+            {
+                "type": "image_picker",
+                "id": "mobile_happi_1",
+                "label": "How does happi Mobile 1 Image"
+            },
+            {
+                "type": "text",
+                "id": "happi_1_text",
+                "label": "Happi 1 image Text"
+            },
+            {
+                "type": "text",
+                "id": "happi_2_text",
+                "label": "Happi 2 image Text"
+            },
+            {
+                "type": "image_picker",
+                "id": "happi_2",
+                "label": "Happi 2 iamge"
+            },
+            {
+                "type": "image_picker",
+                "id": "mobile_happi_2",
+                "label": "Happi 2 Mobile iamge"
+            },
+            {
+                "type": "text",
+                "id": "happi_txt_1",
+                "label": "Happi 2 imag text 1"
+                
+            },
+            {
+                "type": "text",
+                "id": "happi_txt_2",
+                "label": "Happi 2 imag text 2"
+                
+            },
+            {
+                "type": "text",
+                "id": "happi_txt_3",
+                "label": "Happi 2 imag text 3"
+                
+            },
+            {
+                "type": "text",
+                "id": "happi_txt_4",
+                "label": "Happi 2 imag text 4"
+                
+            }
+        ]
+    }
+{% endschema %}

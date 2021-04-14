@@ -1,0 +1,104 @@
+<style>
+
+</style>
+
+
+<section class="see__clean">
+    <div class=" happi__header__text">
+    <h3 class="section_title">{{ section.settings.header__text }}</h3>
+    </div>
+    <div class="clean__image__container">
+    <div class="img__desc_1 img_span">
+        {{ section.settings.text_1 }}
+    </div>
+    <div class="img__desc_2 img_span">
+        {{ section.settings.text_2 }}
+    </div>
+    <div class="clean__img img_span">
+        <img src="{{ section.settings.image | img_url: '1920x' }}" alt="" />
+    </div>
+    <div class="img__desc_3 img_span">
+        {{ section.settings.text_3 }}
+    </div>
+    <div class="img__desc_4 img_span">
+        {{ section.settings.text_4 }}
+    </div>
+    <div class="img__desc_5 img_span">
+        {{ section.settings.text_5 }}
+    </div>
+    <div class="lern__more__btn">
+        <a class="" href=""><b>{{ section.settings.btn_txt }}</b></a>
+    </div>
+    </div>
+</section>
+{% include 'mobile-clean-features' %}
+
+
+{% schema %}
+    {
+        "name": "Product Clean Features",
+        "settings": [
+            {
+                "type": "text",
+                "id": "header__text",
+                "label": "Header Text"
+            },
+            {
+                "type": "image_picker",
+                "id": "image",
+                "label": "Features Image"
+            },
+            {
+                "type": "image_picker",
+                "id": "mobile__image",
+                "label": "Features Mobile Image"
+            },
+            {
+                "type": "html",
+                "id": "text_1",
+                "label": "Feature text 1",
+                "default":"<p>Highly efficient <b>UV-C</b> light to zap hidden bacteria</p>"
+            },
+            {
+                "type": "html",
+                "id": "text_2",
+                "label": "Feature text 2",
+                "default":"<p><b>Understated design</b> to keep your home and air feeling beautiful</p>"
+            },
+            {
+                "type": "html",
+                "id": "text_3",
+                "label": "Feature text 3",
+                "default":"<p><b>Easy controls,</b> because clean air should be easy</p>"
+            },
+            {
+                "type": "html",
+                "id": "text_4",
+                "label": "Feature text 4",
+                "default":"<p><b>Smart display</b> to measure air quality in real time, includingtemperature and humidity readings on some devices</p>"
+            },
+            {
+                "type": "html",
+                "id": "text_5",
+                "label": "Feature text 5",
+                "default":"<p><b>Five filters</b> to capture odors, fibers, gases, toxins, and dust</p>"
+            },
+            {
+                "type": "text",
+                "id": "btn_txt",
+                "label": "Button Text",
+                "default": "Learn more"
+            }
+            
+        ],
+        "presets":[
+            {
+                "name":"Product Clean Fetures",
+                "category":{
+                    "en":"Home"
+                }
+            }
+        ]
+        
+    }
+{% endschema %}

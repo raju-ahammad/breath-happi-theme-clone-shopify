@@ -1,0 +1,73 @@
+<style>
+
+.collection__product__container {
+    margin-left: 8%;
+    margin-right: 8%;
+    padding-top: 11%;
+    margin-bottom: 5%;
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+
+.collection__product__card {
+    width:49%;
+    box-shadow: 0 0px 1px rgb(0 0 0 / 90%);
+    background: #f7f7f7;
+}
+
+@media screen and (max-width: 1020px) {
+    .collection__product__container {
+        padding-top: 15%;
+    }
+}
+
+@media screen and (max-width: 799px) {
+    .collection__product__container {
+        padding-top: 19% !important;
+    }
+}
+
+@media screen and (max-width: 570px) {
+    .collection__product__container {
+        padding-top: 25% !important;
+    }
+}
+
+</style>
+
+<section class="collection__page">
+    {%- assign collection = collections[section.settings.shop] -%}
+    <div class="collection__product__container">
+        {% for product in collection.products  %}
+            <div class="collection__product__card">
+                <div class="product__img__container">
+                    <a href="{{product.url}}"><img src="{{ product.featured_image.src | img_url: 'master' }}" alt="" /></a>
+                </div>
+                <div class="product__desc">
+                    <p><b>{{ product.title }}</b></p>
+                    <p>Cleans 150 Sq Ft</p>
+                    <p>{{ product.price | money}}USD</p>
+                    <p>or 4 interest-free payments of $38 with Affirm. Learn more</p>
+                    <div class="product__btn">
+                        <a class="" href="{{ product.url }}"><b>Learn more</b></a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+
+{% schema %}
+    {
+        "name":"Collection Product",
+        "settings": [
+            {
+                "type": "collection",
+                "id": "shop",
+                "label": "Collection Page"
+            }
+        ]
+    }
+{% endschema %}

@@ -1,0 +1,70 @@
+<style>
+
+</style>
+
+<section class="why-happi">
+    <div class="happi__header__text">
+        <h3 class="section_title">{{ section.settings.happi_header }}</h3>
+    </div>
+    
+    <div class="whyhappi__container">
+    {% for block in section.blocks %}
+        <div class="happi__item happi_item_click">
+            <img src="{{ block.settings.image | img_url: '1920x'}}" alt="" />
+            <p class="happi__title">
+            <b>{{ block.settings.title }}</b>
+            </p>
+            <div class="happi_description">
+                {{ block.settings.description }}
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+    
+    
+</section>
+
+{% schema %}
+{
+   "name":"Why Happi",
+   "settings":[
+      {
+         "type":"text",
+         "id":"happi_header",
+         "label":"Header Text",
+         "default":"hy Happi?"
+      }
+   ],
+   "blocks":[
+      {
+         "type":"slider",
+         "name":"Why Happi Slider",
+         "settings":[
+            {
+               "type":"image_picker",
+               "id":"image",
+               "label":"Image"
+            },
+            {
+               "type":"text",
+               "id":"title",
+               "label":"Title"
+            },
+            {
+               "type":"text",
+               "id":"description",
+               "label":"Description"
+            }
+         ]
+      }
+   ],
+   "presets":[
+      {
+         "name":"Why Happi Section",
+         "category":{
+            "en":"Home"
+         }
+      }
+   ]
+}
+{% endschema %}

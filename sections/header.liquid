@@ -1,0 +1,78 @@
+<header class="header__site">
+    <div class="anouncement__bar">
+        <p class="anouncemant__text">
+            <a href=""> {{ section.settings.anounce__text }}  </a>
+        </p>
+        <p class="anouncement__closeicon">X</p>
+    </div>
+    <div class="navbar">
+        <div class="nav__content">
+            <div class="logo__content">
+            <h2 class="site-logo">
+                <a href="{{ shop.url }}">
+                <img src="{{ section.settings.logo__image | img_url: '1920x' }}" alt="" />
+                </a>
+            </h2>
+            <ul class="nav__element">
+                {%  for link in linklists[section.settings.menu_link].links %}
+                        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                {% endfor %}
+            </ul>
+            </div>
+        </div>
+    <div class="my__acount">
+        <a href="">My acount</a>
+        <div class="cart__logo">
+            <img class="cart__icon" src="{{ section.settings.shopping_cart_image | img_url: '1920x' }}" alt="" />
+        </div>
+    </div>
+    </div>
+
+    {% include 'mobile-navbar' %}
+
+</header>
+
+{% schema %}
+    {
+        "name": "Header",
+        "settings": [
+            {
+                "type": "text",
+                "id": "anounce__text",
+                "label": "AnounceMent Text",
+                "default": "Free Shipping on all orders"
+            },
+            {
+                "type": "image_picker",
+                "id": "logo__image",
+                "label": "Logo Image"
+            },
+            {
+                "type": "image_picker",
+                "id": "mobile_logo__image",
+                "label": "Mobile Logo Image"
+            },
+            {
+                "type": "image_picker",
+                "id": "mobile__hamberg",
+                "label": "Mobile Hamberg Image"
+            },
+            {
+                "type": "image_picker",
+                "id": "mobile__useaccount",
+                "label": "Mobile user Account Image"
+            },
+            {
+                "type": "link_list",
+                "id": "menu_link",
+                "label": "Nav Menu LInk"
+            },
+            {
+                "type": "image_picker",
+                "id": "shopping_cart_image",
+                "label": "Shopping Cart Image"
+            }
+            
+        ]
+    }
+{% endschema %}

@@ -1,0 +1,57 @@
+
+<style>
+.responsive__sidebar {
+    width: 100%;
+    background: #d1faf2;
+    height: 100%;
+    position: fixed;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.3s, left 0.4s;
+    left: -100%;
+}
+.mobile_menu_item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 40%;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+.mobile_menu_item li {
+    list-style: none;
+    line-height: 1.5;
+}
+.mobile_menu_item li a {
+    text-decoration: none;
+    color: black;
+    font-size: 2em;
+}
+</style>
+<section class="responsive__sidebar">
+    <div class ="mobile_menu_item__contaier">
+        <ul class ="mobile_menu_item">
+            {%  for link in linklists[section.settings.mobile_menu].links %}
+                        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                {% endfor %}
+        </ul>
+    </div>
+    
+</section>
+
+{% schema %}
+    {
+        "name": "Mobile Menu Item",
+        "settings": [
+            {
+                "type": "link_list",
+                "id": "mobile_menu",
+                "label": "Mobile Menu"
+               
+            }
+        ]
+    }
+{% endschema %}

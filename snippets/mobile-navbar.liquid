@@ -1,0 +1,24 @@
+<style>
+.mobile__account {
+    margin-right: 4% !important;
+}
+.mobile_cart__icon {
+    cursor: pointer;
+}
+</style>
+
+<div class="mobile__navbar">
+    <div class="mobile__menu__icon">
+        <img src="{{ section.settings.mobile__hamberg | img_url: '1920x' }}" alt="" />
+    </div>
+    <div class="close_icon">
+        <p>X</p>
+    </div>
+    <div class="mobile__logo">
+        <a href="/"><img src="{{ section.settings.mobile_logo__image | img_url: '1920x' }}" alt="" /></a>
+    </div>
+    <div class="mobile__account">
+        <img src="{{ section.settings.mobile__useaccount | img_url: '1920x' }}" alt="" />
+        <img class="mobile_cart__icon" src="{{ section.settings.shopping_cart_image | img_url: '1920x' }}" alt="" />
+    </div>
+</div>

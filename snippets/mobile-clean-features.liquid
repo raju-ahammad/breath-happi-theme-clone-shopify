@@ -1,0 +1,40 @@
+<style>
+.mobile__clean__image {
+    width: 50% !important;
+}
+.clean__mobile__content {
+    width: 50% !important;
+}
+</style>
+
+<section class="see__clean__mobile">
+    <div class=" happi__header__text">
+        <h3 class="section_title">{{ section.settings.header__text }}</h3>
+    </div>
+    <div class="see__clean__mobile__contaiener">
+        <div class="mobile__clean__image">
+            <img src="{{ section.settings.mobile__image | img_url: '1920x' }}" alt="" />
+        </div>
+        <div class="clean__mobile__content">
+            <div class="mobile_img__desc_1 mobile_img_span">
+                {{ section.settings.text_1 }}
+            </div>
+            <div class="mobile_img__desc_2 mobile_img_span">
+                {{ section.settings.text_2 }}
+            </div>
+            
+            <div class="mobile_img__desc_3 mobile_img_span">
+                {{ section.settings.text_3 }}
+            </div>
+            <div class="mobile_img__desc_4 mobile_img_span">
+                {{ section.settings.text_4 }}
+            </div>
+            
+            
+        </div>
+    </div>
+    <div class="lern__more__btn">
+        <a class="" href=""><b>{{ section.settings.btn_txt }}</b></a>
+    </div>
+    
+</section>

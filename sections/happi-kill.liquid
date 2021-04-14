@@ -1,0 +1,40 @@
+<section class="happi__kill__image__section">
+    <div class="happi__header__text">
+        <h3 class="section_title">What does Happi kill?</h3>
+    </div>
+    <div class="happi__kill__image">
+        {% for block in section.blocks %}
+            <div class="kill__image__container">
+                <img src="{{ block.settings.quick_image | img_url: 'master' }}" alt="">
+                <p>{{ block.settings.txt }}</p>
+            </div>
+            
+        {% endfor %}
+    </div>
+    
+</section>
+
+{% schema %}
+    {
+        "name": "what does kill",
+        "blocks":[
+                {
+                    "type": "happi_protect",
+                    "name": "Happi Protect",
+                    "settings":[
+                        {
+                            "type": "image_picker",
+                            "id": "quick_image",
+                            "label": "Quick Image"
+                        },
+                        {
+                            "type": "text",
+                            "id": "txt",
+                            "label": "Text"   
+                        }
+                        
+                    ]
+                 }
+             ]
+    }
+{% endschema %}

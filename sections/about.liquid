@@ -1,0 +1,66 @@
+<style>
+.about__page {
+    margin-left: 8%;
+    margin-right: 8%;
+    padding-top: 10%;
+}
+.pure__image__container img {
+    width: 100%;
+    margin-bottom: 5%;
+}
+.about__contaier {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5%;
+}
+.image__container {
+    width: 60%
+}
+.image__container img{
+    width: 100%;
+}
+.text__container {
+    width: 60%;
+}
+
+</style>
+<section class="about__page">
+    <div class="about__contaier">
+        <div class="image__container">
+            <img src="{{ section.settings.about | img_url:'master'}}" alt="">
+        </div>
+        <div class="text__container">
+            <h3><b>Happi sighs at home and beyond.</b></h3>
+            <p>{{ section.settings.about__text }}</p>
+        </div>
+    </div>
+    <div class="pure__image__container">
+        <img src="{{ section.settings.pure | img_url: 'master'}}" alt="">
+    </div>
+</section>
+
+{% schema %}
+    {
+        "name":"About Page",
+        "settings": [
+            {
+                "type": "image_picker",
+                "id": "about",
+                "label": "About Image"
+            },
+            {
+                "type": "text",
+                "id": "about__text",
+                "label": "About Text"
+                
+            },
+            {
+                "type": "image_picker",
+                "id": "pure",
+                "label": "Purify Image"
+            }
+        ]
+    }
+{% endschema %}

@@ -1,0 +1,57 @@
+
+<section class="hero__section">
+    <div class="hero__section_fig">
+    <div class="hero__caption">
+        <h1>{{ section.settings.first_line_text }}<br />{{ section.settings.secound_line_text }}</h1>
+
+        <a class="btn btn-black btn-large" href="/collections/shop">{{ section.settings.btn_text }}</a>
+    </div>
+    <div class="hero_image">
+        <img src="{{ section.settings.hero_image | img_url: '1920x'}}" alt="" />
+    </div>
+    <div class="hero_mobile__image">
+        <img src="{{ section.settings.hero_mobile_image | img_url: '1920x'}}" alt="" />
+    </div>
+    </div>
+</section>
+
+{% schema %}
+{
+   "name":"Hero section",
+   "settings":[
+      {
+         "type":"text",
+         "id":"first_line_text",
+         "label":"Hero Section First Line Text"
+      },
+      {
+         "type":"text",
+         "id":"secound_line_text",
+         "label":"Hero Section Secound Line Text"
+      },
+      {
+         "type":"text",
+         "id":"btn_text",
+         "label":"Hero Section Button Text"
+      },
+      {
+         "type":"image_picker",
+         "id":"hero_image",
+         "label":"Hero section Image"
+      },
+      {
+         "type":"image_picker",
+         "id":"hero_mobile_image",
+         "label":"Hero section Mobile Image"
+      }
+   ],
+   "presets":[
+      {
+         "name":"Hero Section",
+         "category":{
+            "en":"Home"
+         }
+      }
+   ]
+}
+{% endschema %}

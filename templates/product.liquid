@@ -1,0 +1,163 @@
+<style>
+.product__section {
+  margin-left: 8%;
+  margin-right: 8%;
+  padding-top: 13%;
+  
+}
+
+.product__container {
+  display: flex;
+}
+.product__left__column {
+  background: #f8f8f8;
+  width: 64%;
+}
+.product__image__container img {
+  width: 100%;
+}
+.product__right__column {
+  margin-left: 4%;
+  margin-top: -24px;
+ 
+}
+.product__left__column .slick-next {
+  background-image: url({{'right-arrow.png' | asset_url }});
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;    background-size: cover; 
+
+  margin-right: 50px;  
+
+}
+.product__left__column .slick-prev {
+  background-image: url({{'left-arrow.png' | asset_url }});
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;    background-size: cover; 
+  margin-left: 50px;  
+}
+
+.product__left__column .slick-next:before {
+  opacity: 0 !important;
+}
+
+.product__left__column .slick-prev:before {
+  opacity: 0 !important;
+}
+.add__cart__btn {
+  width: 90%;
+  background: #8dedae;
+  border: none;
+  padding: 0.8rem 1rem;
+  border-radius: 35px;
+  cursor: pointer;
+  outline: none;
+  
+}
+
+@media screen and (max-width: 780px) {
+  .product__section {
+    padding-top: 20% !important;
+  }
+  .product__container {
+    display: flex;
+    flex-direction: column;
+  }
+  .product__left__column {
+    width: 100%;
+  }
+  .product__right__column {
+    width: 100%;
+  }
+  .section__title {
+    font-size: 1.3em;
+  }
+  .related__product__card  {
+    width: 45% !important;
+  }
+} 
+
+@media screen and (max-width: 1200px) {
+  .related__product__card  {
+    width: 45% !important;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .section__title {
+  font-size: 0.9em;
+}
+.product__section {
+    padding-top: 25% !important;
+  }
+  .related__product__card  {
+    width: 45% !important;
+  }
+}
+</style>
+
+<section class="product__section">
+  <div class="product__container">
+    <div class="product__left__column">
+    {% for image in product.images %}
+      <div class="product__image__container">
+          <img src="{{ image.src | img_url: 'master' }}" alt="{{ image.alt | escape }}">
+      </div>
+    {% endfor %}
+
+    </div>
+    <div class="product__right__column">
+      <h1>{{ product.title }}</h1>
+      <p>{{ product.price | money}} USD</p>
+      
+      {% form 'product', product, class:'collection_product_form' %}
+        <input name="id" value="{{product.selected_or_first_available_variant.id}}" type="hidden">
+        <input name="quantity" value="1" type="hidden">
+        <button class="add__cart__btn">Add To Cart</button>
+        <div style="color:red" class="er"></div>
+
+        <script>
+          console.log("Cart call")
+          var collection_product_form = $('#product_form_{{product.id}}');
+          console.log("form",collection_product_form)
+
+          collection_product_form.on('submit', function(e) {
+            var $this =$(this);
+            e.preventDefault();
+            var formdata = $this.serialize();
+
+            //console.log(formdata);
+            $.ajax({
+              url: '/cart/add',
+              type: 'POST',
+              data: formdata,
+              beforeSend: function() {
+                
+                $('.er').text('');
+              },
+              success: function(res) {
+                console.log(res)
+                cartMenuOpen();
+                cartBuilds()
+                $('.er').text('');
+              },
+              error: function(xhr, status, error) {
+                var err =xhr.responseText
+                //console.log(err);
+                var msg = $(err).find('.content .content--block');
+                $this.find('.er').text($.trim(msg.eq(1).find('.content--desc').text()));
+              }
+            });
+          });
+
+        </script>
+
+      {% endform %}
+      <div>{{ product.description }}</div>
+
+    </div>
+  </div>
+</section>
+
+{% section 'product' %}

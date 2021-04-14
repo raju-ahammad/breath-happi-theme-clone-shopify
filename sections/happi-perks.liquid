@@ -1,0 +1,70 @@
+<section class="happi__perks">
+    <div class="happi__header__text">
+    <h3 class="section_title">Happi Perks</h3>
+    </div>
+    <div class="happi__card__container">
+    <div class="perks__card perks__card__color_1">
+        <div class="perks__img__container">
+        <img src="{{ section.settings.image_1 | img_url: '1920x' }}" alt="" />
+        </div>
+        <div class="perks__card__desc">
+        <h2>See <br />the clean.</h2>
+        <p>
+            The Happi smart screen always has an eye on the atmosphere, so you
+            can see the improvement of your air quality in real time.
+        </p>
+        </div>
+    </div>
+    <div class="perks__card perks__card__color_2">
+        <div class="perks__img__container">
+        <img src="{{ section.settings.image_2 | img_url: '1920x' }}" alt="" />
+        </div>
+        <div class="perks__card__desc">
+        <h2>Happi air knows no <br> borders.</h2>
+        <p>
+            Our purifier is incredibly energy efficient, but we know there’s no air without nature. So, for every unit sold, we plant a tree in a developing nation. When it comes to air quality and carbon neutrality, the only game is a long game.
+        </p>
+        </div>
+    </div>
+    <div class="perks__card perks__card__color_3">
+        <div class="perks__img__container">
+        <img src="{{ section.settings.image_3 | img_url: '1920x' }}" alt="" />
+        </div>
+        <div class="perks__card__desc">
+        <h2>Try Happi for <br> 45 days.</h2>
+        <p>
+            Plug in Happi and let your lungs breathe a sigh of relief. If, for some strange reason, they’re not sold, we will happily return your money within 45 days of your purchase.
+        </p>
+        </div>
+    </div>
+    </div>
+</section>
+
+{% schema %}
+    {
+        "name": "Happi Perks",
+        "settings":[
+            {
+                "type": "image_picker",
+                "id": "image_1",
+                "label": "Image 1"
+            },
+            {
+                "type": "image_picker",
+                "id": "image_2",
+                "label": "Image 2"
+            },
+            {
+                "type": "image_picker",
+                "id": "image_3",
+                "label": "Image 3"
+            }
+        ],
+        "presets": [
+            {
+                "name": "Happi Perks",
+                "category": "home"
+            }
+        ]
+    }
+{% endschema %}

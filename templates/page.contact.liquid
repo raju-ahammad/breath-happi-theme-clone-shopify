@@ -1,0 +1,58 @@
+<style>
+.contact__page {
+  padding-top: 10%;
+}
+
+.contact__page__container {
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+  justify-content: center;
+}
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  
+}
+.contact__form {
+  width: 50%;
+}
+.contact-form input {
+  padding: 10px 0px;
+  margin-bottom: 3%;
+  border: 1px solid #cecaca;
+}
+.contact-form textarea {
+  border: 1px solid #cecaca;
+}
+.contact_submit__btn {
+  width: 36%;
+  padding: 0.8rem 2rem !important;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  background: gray;
+  border: none;
+  outline: none;
+}
+</style>
+<section class="contact__page">
+  <div class="contact__page__container">
+    <h1>{{ page.title }}</h1>
+    <div class="contact__form">
+      {% form 'contact' %}
+      {% if form.posted_successfully? %} Thank you for your contact {% endif %}
+      {{ form.errors | default_errors }}
+      <label for="ContactFormName">name</label>
+      <input  type="text" id="ContactFormName" name="contact[name]">
+      <label for="ContactFormEmail">email</label>
+      <input type="email" id="ContactFormEmail" name="contact[email]">
+      <label for="ContactFormPhone">phone</label>
+      <input type="tel" id="ContactFormPhone" name="contact[phone]">
+      <label for="ContactFormMessage">message</label>
+      <textarea rows="10" id="ContactFormMessage" name="contact[body]"></textarea>
+      <input class="contact_submit__btn" type="submit" value="send">
+    {% endform %}
+    </div>
+
+  </div>
+</section>

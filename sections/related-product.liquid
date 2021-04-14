@@ -1,0 +1,51 @@
+<style>
+.related__product__section {
+    margin-left: 8%;
+    margin-right: 8%;
+    margin-top: 5%
+}
+.related_product__title {
+    margin-bottom: 5%;
+}
+</style>
+
+<section class="related__product__section">
+    <div class="happi__header__text">
+        <h3 class="section_title">Related Products</h3>
+    </div>
+    {%- assign collection = collections[section.settings.related_collection] -%}
+    <div class="Related__product__container">
+    
+        {% for product in collection.products  %}
+            <div class="related__product__card ">
+                <div class="product__img__container  ">
+                    <a href="{{product.url}}"><img src="{{ product.featured_image.src | img_url: 'master' }}" alt="" /></a>
+                </div>
+                <div class="product__desc">
+                    <p><b>{{ product.title }}</b></p>
+                    <p>Cleans 150 Sq Ft</p>
+                    <p>{{ product.price | money}}USD</p>
+                    <p>or 4 interest-free payments of $38 with Affirm. Learn more</p>
+                    <div class="product__btn">
+                        <a class="" href="{{ product.url }}"><b>Learn more</b></a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+
+
+{% schema %}
+    {
+        "name": "Related Product",
+        "settings": [
+            {
+                "type": "collection",
+                "id": "related_collection",
+                "label": "Related Product"
+               
+            }
+        ]
+    }
+{% endschema %}

@@ -1,0 +1,70 @@
+<style>
+.mini_cart_close_btn {
+    cursor: pointer;
+    background: gray;
+    padding: 1px 4px;
+    border-radius: 10px;
+}
+.cart__title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 6%;
+    margin-right: 6%;
+
+}
+.cart_item_border {
+    border-bottom: 1px solid black;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+.filter_subscrip {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 6%;
+    margin-right: 6%;
+}
+.filter_subscrip button {
+    background: #8cedad;
+    font-size: 0.8em;
+    padding: 3px 17px;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 7px;
+    border: 1px solid;
+}
+.product__price__total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 6%;
+    margin-right: 6%;
+}
+.filter_subscrip p {
+    width: 60%;
+}
+hr {
+    margin-left: 6%;
+    margin-right: 6%;
+}
+</style>
+
+<section class="mini__cart__section">
+    <div class="cart__title">
+        <h3>Your Cart</h3>
+        <p class="mini_cart_close_btn">Close</p>
+    </div>
+
+    <div class="cart_item_border"></div>
+    {% include 'mobile-mini-cart' %}
+    <div class="filter_subscrip">
+        <p>Add 6 Month My Happi Filter Subscription?</p>
+        <button>Yes</button>
+      </div>
+      <hr>
+    <div class="product__price__total">
+        <p>Total</p>
+        <p>{{ cart.total_price | money }}</p>
+    </div>
+</section>

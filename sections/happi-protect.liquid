@@ -1,0 +1,112 @@
+<style>
+.happi__protect {
+    margin-left: 8%;
+    margin-right: 8%;
+}
+.txt__card {
+    display: none;
+}
+
+.protect__card__container:hover {
+    background: skyblue;
+    height: 450px;
+}
+.protect__card__container:hover .txt__card{
+    display: block
+}
+
+.protect__card__container:hover .img__card {
+    display: none;
+}
+.protect_section__title {
+    margin: auto;
+    font-size: 2.5em;
+    border-bottom: 2px solid;
+    width: 60%;
+    text-align:center
+   
+}
+.happi__protect__imgtxt__container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.protect__card__container {
+    width: 30%;
+    display: flex;
+    align-items:center;
+
+}
+.img__card img {
+    width: 100%;
+}
+.happi__protect__title {
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+.txt__card {
+    text-align: center;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+@media screen and (max-width: 780px) {
+    .protect_section__title {
+        font-size: 1.2em !important;
+    }
+    .protect__card__container {
+        width: 45% !important;
+    }
+}
+</style>
+<section class="happi__protect">
+    <div class="happi__header__text">
+        <h3 class="section_title">Which rooms might Happi protect?</h3>
+    </div>
+    <div class="happi__protect__imgtxt__container">
+        {% for block in section.blocks %}
+            <div class="protect__card__container">
+                <div class="img__card">
+                    <img src="{{ block.settings.quick_image | img_url: 'master'}}" alt="">
+                </div>
+                <div class="txt__card">
+                    <h3>{{ block.settings.title }}</h3>
+                    <p>{{ block.settings.txt }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+
+{% schema %}
+    {
+        "name": "Happi Protect",
+        "blocks":[
+            {
+                "type": "happi_protect",
+                "name": "Happi Protect",
+                "settings":[
+                    {
+                        "type": "image_picker",
+                        "id": "quick_image",
+                        "label": "Quick Image"
+                    },
+                    {
+                        "type": "text",
+                        "id": "title",
+                        "label": "Title"   
+                    },
+                    {
+                        "type": "text",
+                        "id": "txt",
+                        "label": "Text"   
+                    }
+                    
+                ]
+                }
+            ]
+    }
+{% endschema %}

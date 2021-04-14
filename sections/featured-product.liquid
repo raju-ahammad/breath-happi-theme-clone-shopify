@@ -1,0 +1,53 @@
+<section class="featured__product">
+    <div class="happi__header__text">
+        <h3 class="section_title">Featured Products</h3>
+    </div>
+    
+    {%- assign collection = collections[section.settings.feature__product] -%}
+    <div class="fetured__product__container">
+    
+        {% for product in collection.products  %}
+            <div class="product__card">
+                <div class="product__img__container">
+                    <a href="{{product.url}}"><img src="{{ product.featured_image.src | img_url: 'master' }}" alt="" /></a>
+                </div>
+                <div class="product__desc">
+                    <p><b>{{ product.title }}</b></p>
+                    <p>Cleans 150 Sq Ft</p>
+                    <p>{{ product.price | money}}USD</p>
+                    <p>or 4 interest-free payments of $38 with Affirm. Learn more</p>
+                    <div class="product__btn">
+                        <a class="" href="{{ product.url }}"><b>Learn more</b></a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+
+{% schema %}
+    {
+        "name": "Featured Product",
+        "settings": [
+            {
+                "type": "text",
+                "id": "header__text",
+                "label": "Feature Header Text",
+                "default": "Featured Products"
+            },
+            {
+                "type": "collection",
+                "id": "feature__product",
+                "label": "Feature Product Collection"
+            }
+        ],
+        "presets":[
+            {
+                "name":"Featured Product",
+                "category":{
+                    "en":"Home"
+                }
+            }
+        ]
+    }
+{% endschema %}
