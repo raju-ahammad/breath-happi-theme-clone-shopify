@@ -36,13 +36,13 @@ const cartOverly = document.querySelector(".body_overly_open")
 
 cartIcon.addEventListener("click", ()=> {
   cartSection.classList.add("mini__cart__open")
-  body.classList.add("mobile_sidebar__open", "body_overly_open")
+  body.classList.add("mobile_sidebar__open")
   body.classList.add("body_overly_open")
 })
 
 miniCartClose.addEventListener("click", () => {
   cartSection.classList.remove("mini__cart__open")
-  body.classList.remove("mobile_sidebar__open", "body_overly_open")
+  body.classList.remove("mobile_sidebar__open")
   body.classList.remove("body_overly_open")
   
 })
@@ -61,6 +61,31 @@ function cartMenuOpen() {
   body.classList.add("body_overly_open")
 
 }
+
+const popupOpen = document.querySelector(".popup_open_btn")
+const popupClose = document.querySelector(".popup__close__btn")
+const popupContainer = document.querySelector(".filter__popup__main")
+const openPopup = document.querySelector(".filter__popup__section")
+const popupBtn = document.querySelector(".popup__btn")
+
+
+popupOpen.addEventListener("click", () => {
+  popupContainer.style.display ="block"
+  body.classList.add("mobile_sidebar__open")
+  openPopup.classList.add("open__popup")
+})
+
+popupClose.addEventListener("click", () => {
+  popupContainer.style.display ="none"
+  body.classList.remove("mobile_sidebar__open")
+  openPopup.classList.remove("open__popup")
+})
+
+popupBtn.addEventListener("click", () => {
+  popupContainer.style.display ="none"
+  body.classList.remove("mobile_sidebar__open")
+  openPopup.classList.remove("open__popup")
+})
 
 
 $(document).ready(function(){

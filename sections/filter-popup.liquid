@@ -1,0 +1,162 @@
+<style>
+.filter__popup__section {
+    width: 100%;
+   height: 100%;
+    position: fixed;
+    z-index: 999;
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    top: -100%;
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+
+
+
+}
+.filter__popup__main {
+    display: none;
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+.popup__container {
+    background: #ffffff;
+    width: 75%;
+    height: 80%;
+    margin-top: 4%;
+
+}
+.popup__close__btn {
+    cursor: pointer;
+    float: right;
+    margin-right: 2%;
+    margin-top: 2%;
+}
+.popup__item {
+    display: flex;
+    justify-content: space-between;
+    
+
+}
+.popup__img__container {
+    width: 45%
+}
+.popup__img__container img{
+    width: 100%;
+}
+.popup__txt__container {
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+    
+
+}
+.popup__btn {
+    cursor: pointer;
+    width: 90%;
+    padding: 12px 0px;
+    background: #6cd890;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+}
+.popup__container hr {
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 5%;
+}
+.popup__item a {
+    text-decoration: none;
+    color: black;
+}
+.popup__item input {
+    margin-bottom: 5%;
+}
+</style>
+
+<div class=filter__popup__main>
+    <div class="filter__popup__section">
+        <div class="popup__container">
+            <span class="popup__close__btn">x</span>
+            <hr>
+            {%- assign collection = collections[section.settings.shop] -%}
+            {% for product in collection.products  %}
+            <div class="popup__item">
+                <div class="popup__img__container">
+                    <a href="{{product.url}}"><img src="{{ product.featured_image.src | img_url: 'master' }}" alt="" /></a>
+                </div>
+                <div class="popup__txt__container">
+                    <h1>{{ product.title }}</h1>
+                    <p>{{ product.price | money }}</p>
+                    {% form 'product', product, class:'collection_product_form' %}
+                        <input type="radio" id="one-time" name="one" value="one-time">
+                        <label for="one-time">  One-time purchase: $35.00 </label><br>
+                        <input type="radio" id="subscribe" name="one" value="subscribe">
+                        <label for="subscribe"> Subscribe & save (10%): $31.50</label><br>
+                        <p><a href="">Subscription details</a></p>
+                        <input name="id" value="{{product.selected_or_first_available_variant.id}}" type="hidden">
+                        <input name="quantity" value="1" type="hidden">
+                        <button class="popup__btn"> Add to cart </button>
+                        <div style="color:red" class="er"></div>
+
+                        <script>
+                        console.log("Cart call")
+                        var collection_product_form = $('#product_form_{{product.id}}');
+                        console.log("form",collection_product_form)
+
+                        collection_product_form.on('submit', function(e) {
+                            var $this =$(this);
+                            e.preventDefault();
+                            var formdata = $this.serialize();
+
+                            //console.log(formdata);
+                            $.ajax({
+                            url: '/cart/add',
+                            type: 'POST',
+                            data: formdata,
+                            beforeSend: function() {
+                                
+                                $('.er').text('');
+                            },
+                            success: function(res) {
+                                console.log(res)
+                                cartMenuOpen();
+                                cartBuilds()
+                                $('.er').text('');
+                            },
+                            error: function(xhr, status, error) {
+                                var err =xhr.responseText
+                                //console.log(err);
+                                var msg = $(err).find('.content .content--block');
+                                $this.find('.er').text($.trim(msg.eq(1).find('.content--desc').text()));
+                            }
+                            });
+                        });
+
+                        </script>
+
+                    {% endform %}
+                    <p><a href="{{product.url}}">view detils</a></p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% schema %}
+    {
+        "name":"Pop up  Product",
+        "settings": [
+            {
+                "type": "collection",
+                "id": "shop",
+                "label": "Collection Page"
+            }
+        ]
+    }
+{% endschema %}
