@@ -72,11 +72,12 @@
     </div>
     <div class="happi__kill__image">
         {% for block in section.blocks %}
+            {% if block.settings.product == product.handle %}
             <div class="kill__image__container">
                 <img src="{{ block.settings.happi_image | img_url: 'master' }}" alt="">
                 <p>{{ block.settings.image_text }}</p>
             </div>
-            
+            {% endif %}
         {% endfor %}
     </div>
     
@@ -98,7 +99,7 @@
           frameborder="0" allowfullscreen></iframe>
     </div>
 
-    <div class="">
+    <div class="happi__header__text">
         <h3 class="section_title">Related Products</h3>
     </div>
     {%- assign collection = collections[section.settings.related_collection] -%}
@@ -185,6 +186,11 @@
                 "type": "Image",
                 "name": "How happi kill Image",
                 "settings":[
+                    {
+                        "type": "product",
+                        "id": "product",
+                        "label": "Product Select"
+                    },
                     {
                         "type": "image_picker",
                         "id": "happi_image",
